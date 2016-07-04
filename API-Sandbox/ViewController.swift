@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireImage
 import AlamofireNetworkActivityIndicator
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -24,12 +25,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        exerciseOne()
-        exerciseTwo()
-        exerciseThree()
+//        exerciseOne()
+//        exerciseTwo()
+//        exerciseThree()
         
-        let apiToContact = "https://itunes.apple.com/us/rss/topmovies/limit=25/json"
-        // This code will call the iTunes top 25 movies endpoint listed above
+        print(OAUTH_CONSUMER_KEY)
+        
+        let apiToContact = "https://api.yelp.com/v2/search"
+        let parameters = ["term":"Thai", "location":"Singapore", "limit":"5", "oauth_consumer_key":OAUTH_CONSUMER_KEY, "oauth_token": OAUTH_TOKEN]
+        // This code will call Yelp's top 5 Thai listings in Singapore
         Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
             switch response.result {
             case .Success:
